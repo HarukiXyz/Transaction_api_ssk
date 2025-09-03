@@ -566,4 +566,84 @@ async function createTransaction(transactionData) {
 - ✅ **Input Sanitization**: Proper input validation on client side
 
 ### Best Practices
-- Always
+- Always use HTTPS in production
+- Implement proper token refresh mechanism
+- Regular security updates for dependencies
+- Monitor for suspicious activities
+- Implement rate limiting for API endpoints
+
+## 🔍 Troubleshooting
+
+### Common Issues
+
+#### 1. Token Expired Error
+```json
+{
+  "success": false,
+  "message": "Unauthorized"
+}
+```
+**Solution**: Re-authenticate by calling the login endpoint
+
+#### 2. Validation Errors
+```json
+{
+  "success": false,
+  "message": "Invalid transaction data",
+  "errors": {
+    "amount": ["Amount must be non-negative"]
+  }
+}
+```
+**Solution**: Check request data format and validation rules
+
+#### 3. Wallet Not Found
+```json
+{
+  "success": false,
+  "message": "Wallet not found"
+}
+```
+**Solution**: Ensure user has a wallet (should be auto-created on registration)
+
+### Debug Mode
+
+Enable debug mode in Django settings for development:
+```python
+DEBUG = True
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+    },
+}
+```
+
+### Flutter Debug
+
+Use Flutter Inspector and console logs:
+```dart
+print('API Response: ${response.body}');
+print('Token: ${await JwtStorage.getToken()}');
+```
+
+## 📞 Support
+
+For questions or issues, please contact:
+- **Developer**: SAKKARIN
+- **Email**: [your-email@example.com]
+- **GitHub**: [your-github-profile]
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+**Created by SAKKARIN** - Transaction Management System with Django REST API and JWT Authentication
