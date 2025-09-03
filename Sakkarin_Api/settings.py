@@ -84,7 +84,10 @@ WSGI_APPLICATION = 'Sakkarin_Api.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL", "postgresql://transactions_user:your_password@localhost:5432/transactions_db")
+        default=os.getenv(
+            "DATABASE_URL",
+            "postgresql://transactions_user:your_password@localhost:5432/transactions_db"
+        )
     )
 }
 
