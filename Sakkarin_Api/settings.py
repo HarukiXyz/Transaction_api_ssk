@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-myy0wfmrlgg1@v&^@at6gm53027#0nrcfd706^0jz^d0z)cl4h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-default-key")
+DEBUG = os.getenv("DEBUG", "False") == "True"
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
 # Application definition
 
@@ -87,7 +87,9 @@ DATABASES = {
         default=os.getenv(
             "DATABASE_URL",
             "postgresql://transactions_user:Haruwannafreedom2053@localhost:5432/transactions_db"
-        )
+        ),
+        conn_max_age=600,
+        ssl_require=True  # บังคับ SSL สำหรับ PostgreSQL cloud
     )
 }
 
