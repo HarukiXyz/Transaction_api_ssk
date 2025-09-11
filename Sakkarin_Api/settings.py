@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-default-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "'127.0.0.1', '.vercel.app'").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,.vercel.app").split(",")
 
 # Application definition
 INSTALLED_APPS = [
@@ -42,6 +42,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
 ]
 
 ROOT_URLCONF = 'Sakkarin_Api.urls'
@@ -63,7 +64,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Sakkarin_Api.wsgi.application'
 
-# Database (PostgreSQL)
+# Database
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv(

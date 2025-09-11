@@ -1,6 +1,7 @@
-Django>=5.2
+django
 djangorestframework
 djangorestframework-simplejwt
 gunicorn
 psycopg2-binary
 dj-database-url
+whitenoise
