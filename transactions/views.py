@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from rest_framework import viewsets, permissions
 from .models import Transactions
 from .serializers import TransactionSerializer
 # Create your views here.
+
+def indexPage(request):
+    return render(request, "index.html")
 
 class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
