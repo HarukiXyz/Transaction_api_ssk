@@ -45,6 +45,8 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware', 
 ]
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 ROOT_URLCONF = 'Sakkarin_Api.urls'
 
 TEMPLATES = [
@@ -66,14 +68,7 @@ WSGI_APPLICATION = 'Sakkarin_Api.wsgi.application'
 
 # Database
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv(
-            "DATABASE_URL",
-            "postgresql://transactions_user:Haruwannafreedom2053@localhost:5432/transactions_db"
-        ),
-        conn_max_age=600,
-        ssl_require=True
-    )
+    "default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
 
 # Password validation
